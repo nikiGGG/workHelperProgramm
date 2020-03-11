@@ -1,0 +1,336 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>Робот</title>
+    <script src="html.js" type="text/javascript"></script>
+    <script src="speachRecognition.js" type="text/javascript"></script>
+    <script src="chatbot.js" type="text/javascript"></script>
+    <script src="audio.js" type="text/javascript"></script>
+    <script src="recognition.js" type="text/javascript"></script>
+    <script src="toRobot.js" type="text/javascript"></script>
+    <link rel="stylesheet" href="master.css">
+  </head>
+
+  <body onload="update()">
+
+    <div class="left" id="left">
+      <div style="display: none;">
+        <h3  onclick="openbox('General')">General</h3>
+        <div id="General" style="display: block;">
+          <div>
+            <button id="evning" onclick="audioPlay('evning')" title="Добрый вечер, меня зовут Никита. Слушаю вас">Вечер</button>
+            <button id="day" onclick="audioPlay('day')" title="Добрый день, меня зовут Никита. Слушаю вас">День</button>
+            <button id="adress" onclick="audioPlay('adress')" title="Давайте я проерю. Адрес ваш пожалуйста назовите">Адрес</button>
+            <button id="repeataddres" onclick="audioPlay('repeataddres')" title="Повторите еще раз ваш адрес пжлст">Повтор адр</button>
+            <button id="sayappart" onclick="audioPlay('sayappart')" title="Назовите квартиру">Квартира?</button>
+            <button id="name" id="evning" onclick="audioPlay('name')" title="На чьё имя оформ дого">Имя?</button>
+            <button id="check" onclick="audioPlay('check')" title="Сейчас я всё проверю на линии оставайтесь, не отключайтесь">Проверю</button>
+            <button id="nothear" onclick="audioPlay('nothear')" title="Вас не слышно говоите пжл громче">Не слышно</button>
+            <button id="otherqwestion" onclick="audioPlay('otherqwestion')" title="Остались у вас ещё как вопросы?">Вопросы?</button>
+            <button id="finish" onclick="audioPlay('finish')" title="Вам спас за звонок. На лин сейчас также пож ост чтоб оценить мою конс">Завершение1</button>
+            <button id="finish" onclick="audioPlay('ending')" title="На линии также отсаньтесь чтоб оцнить конс. Дброго дня вам">Завершение2</button>
+          </div>
+          <div>
+            <br />
+            <button id="yesright" onclick="audioPlay('yesright')" title="Да, всё верно">Верно</button>
+            <button id="listening" onclick="audioPlay('listening')" title="Да, слушаю вас">Слушаю</button>
+            <button id="yepspecify" onclick="audioPlay('yepspecify')" title="Да, сейчас информацию я уточняю">Уточняю</button>
+            <button id="understand" onclick="audioPlay('understand')" title="Да, понял вас">Понял</button>
+            <button id="intortv" onclick="audioPlay('intortv')" title="У вас интернет сейчас не работатет или телевидение?">Инт\ТВ</button>
+            <button id="myname" onclick="audioPlay('myname')" title="Меня зовут Никита">Имя</button>
+            <button id="wait" onclick="audioPlay('wait')" title="На линии сейчас ожидайте, я инф уточню потреуется букв минута, не отключайтесь">Ожидайте</button>
+            <button id="addresok" onclick="audioPlay('addresok')" title="На линии вижу все впорядке">Всё ок</button>
+            <button id="thankforwait" onclick="audioPlay('thankforwait')" title="Спасибо за ожидание">Спс ждал</button>
+            <button id="answeryet" onclick="audioPlay('answeryet')" title="На данный вопрос я вам уже отвечал, друие вопросы у вас еще будут?">Уже ответил</button>
+            <button id="cutcall" onclick="audioPlay('cutcall')" title="Если других вопросов у вас нет я звонок завершаю, доброго дня.">Нет вопросов</button>
+            <button id="actionPristavka1" onclick="audioPlay('actionPristavka1')" title="На данный вопрос я вам уже отвечал, друие вопросы у вас еще будут?">ПриставкаЕ</button>
+            <button id="actionPristavka2" onclick="audioPlay('actionPristavka2')" title="Если других вопросов у вас нет я звонок завершаю, доброго дня.">Приставка</button>
+          </div>
+          </div>
+          <h3  onclick="openbox('Internet')">Internet</h3>
+          <div id="Internet" style="display: none;">
+          <div>
+            <button id="concrete" onclick="audioPlay('concrete')" title="Сайты вообще не открываются, или открываются но медленно?">Уточните</button>
+            <button id="router" onclick="audioPlay('router')" title="К инт вы подкл через вай роутер или кабель у вас ид напр из подъ?">Роутер</button>
+            <button id="lamps" onclick="audioPlay('lamps')" title="На вай роутере у вас горит больше 2 лампочек?">Лампочки</button>
+            <button id="reboot" onclick="audioPlay('reboot')" title="Сам вай роут перезагр. Из розе его выключ, включ снова обратно?">Перезагрузка</button>
+            <button id="rebootroutL" onclick="audioPlay('rebootroutL')" title="Попробуйте сейчас вай фай роутер перезагрузить из розетки отключите и включите обратно, Ждать не обязательно включайте сразу. После того как роутер перезагрузиься проверьте интернет заработал или нет.">ПерезагрузкаL</button>
+            <button id="transfer" onclick="audioPlay('transfer')" title="Для решения вашего вопроса мне сейч необх будет вас перев на спец техн поддержки. Я вас сейчас соед с ними на линии остава не отклю">Перевод</button>
+            <button id="transferOCTP" onclick="audioPlay('transferOCTP')" title="Сейчас вас перевожу на специалистов тех поддержки">Перевод2</button>
+            <button id="againtransfer" onclick="audioPlay('againtransfer')" title="Вас повторно переведу на тех спецов не откл">Повтор</button>
+            <button id="happened" onclick="audioPlay('happened')" title="Такое иногда  случается на линии постоянно ведуться работы по улушению Перезагрузка роутера помогает обновить сессию, зачастую это помогает.">Бывает</button>
+          </div>
+
+          <div>
+            <p>Wi-fi N work</p>
+            <button id="allsites" onclick="audioPlay('allsites')" title="У вас сейчас все сайты не открываются или только некоторые?">Все сайты?</button>
+            <button id="intNgoTOrouter" onclick="audioPlay('intNgoTOrouter')" title="По линии вижу у вас все впорядке, но связь до роутера не доходит">Не доходит</button>
+            <button id="seewifi" onclick="audioPlay('seewifi')" title="Вашу вай-фай сеть вай видно?">Видно?</button>
+            <button id="seeotherwifi" onclick="audioPlay('seeotherwifi')" title="Другие вай-фай сети видны?">Другие?</button>
+            <button id="isconnectwifi" onclick="audioPlay('isconnectwifi')" title="К вашей вай-фай сети вам удалось подключиться?">Подключились?</button>
+            <button id="errorconnWifi" onclick="audioPlay('errorconnWifi')" title="При подключении к вай-фай появляется какая то ошибка?">Ошибка WiFi</button>
+            <button id="checkint" onclick="audioPlay('checkint')" title="Проверьте сайты открываются у вас или нет">Открываютя?</button>
+            <button id="otherdevwork" onclick="audioPlay('otherdevwork')" title="На других устройствах у вас интернет работате?">На других?</button>
+          </div>
+          <div>
+            <br>
+            <button id="checkconn" onclick="audioPlay('checkconn')" title="Сзади вай фай роутера у вас должен быть один разъем синего или красного цвета. В этот разъем должен быть подключен кабель из подъезда. Проверьте верно у вас подключено или нет.">Красный разъём</button>
+            <button id="checkintafses" onclick="audioPlay('checkintafses')" title="Вижу сессия интрнет у вас появилась, проверьте инт заработал?">Сессия ОК,проверь</button>
+            <button id="checklogpasRout" onclick="audioPlay('checklogpasRout')" title="Сейчас необходимо будет проверить верно ли у вас в настройках роутера указаны логин и пароль">Верный лог?</button>
+            <button id="19216801" onclick="audioPlay('19216801')" title="Для проверки откройте любой браузер и вверху в адресной строке наберите цифры которые я сейчас продиктую. Скажите когда начать диктовать">19216801</button>
+            <button id="RdevicesconnTOrout" onclick="audioPlay('RdevicesconnTOrout')" title="Есть устройства которые уже подключены к вай-фай роутеру?">Подкл к WiFi</button>
+          </div>
+
+          <div>
+            <p>Wi-fi speed</p>
+            <button id="checkintaftreboot" onclick="audioPlay('checkintaftreboot')" title="После того как роутер загрузиться проверьте интернет заработал или нет">Инт после</button>
+            <button id="measurement" onclick="audioPlay('measurement')" title="Сейсач необх будет сдела замер скоро на сайт спид тест точ нет. Перед замер откл все загр файл, приост вид, для кор замер скор. Посл окон замера скаж цифр котор у вас получ">Замер</button>
+            <button id="ONspeedtest" onclick="audioPlay('ONspeedtest')" title="Замер скорост произвеите на сайте спид тест">На спидтест</button>
+            <button id="lowspeed" onclick="audioPlay('lowspeed')" title="На самом деле вижу скор у вас ниже чем долж быть по тариф. Для дальн диагно мне необх будет соед вас со старш техн спец. Я вас перев на него, на лин оста, не откл">Низкая</button>
+            <button id="checkspeedagain" onclick="audioPlay('checkspeedagain')" title="Проверьте также медленно инт грузит или лучше стало?">Лучше?</button>
+            <button id="highspeed" onclick="audioPlay('highspeed')" title="">"Высокая"</button>
+            <button id="cash" onclick="audioPlay('cash')" title="">"Кэш Куки"</button>
+            <button id="int37min" onclick="audioPlay('int37min')" title="Интернет заработатет у вас в течении 3-7 минут">3-7 мин</button>
+          </div>
+
+          <div>
+            <p>Ethernet</p>
+            <button id="pc_nout" onclick="audioPlay('pc_nout')" title="К интерн вы сейчас подклю через ноут или компьютер?">ПК или Ноут?</button>
+            <button id="conntorout" onclick="audioPlay('conntorout')" title="К роутеру вы подключаетесь по кабелю или по вай-фай, без проводов?">Способ подключения</button>
+            <button id="havelogpas" onclick="audioPlay('havelogpas')" title="Для настройки подключения напрямую требуется логин и пароль. Эти данные у вас сохранились?">Есть лог\пар</button>
+            <button id="monitoricon" onclick="audioPlay('monitoricon')" title="У вас в правом нижнем углу экрана должен быть значок монитора компьютера есть такой?">Иконка комп</button>
+            <button id="clickicon" onclick="audioPlay('clickicon')" title="На этот значок нажмите правой кнопкой мыши и выберите центр управления сетями и общим доступом либо открыть параметры сети">Нажмите</button>
+            <button id="clickadapter" onclick="audioPlay('clickadapter')" title="В окне центра управления сетями с левой стороны нажмите надпись изменение параметров адаптера">Адаптера</button>
+            <button id="findlocalconnect" onclick="audioPlay('findlocalconnect')" title="В открывшемся окне найдите надпись подключение по локальной сети и скажите что написано ниже">Локальная</button>
+          </div>
+          <div>
+            <br />
+            <button id="error" onclick="audioPlay('error')" title="При подкл к интерн у вас появл каккойто номер ошибки - 651, 692?">Номер ошибки</button>
+            <button id="checklog" onclick="audioPlay('checklog')" title="Назовит пож лог пароль для подкл к интерн. Я проверю верн эти данн или нет">Проверить Лог\Пар</button>
+            <button id="notepad" onclick="audioPlay('notepad')" title="Попроб сейч напис лог пар в блокно или ворд, затем скопир их из текст редактор и вставьте в поля для подклю к интернету">Блокнот</button>
+            <button id="recreate" onclick="audioPlay('recreate')" title="Сейч давайт попро пересозд подклю к интерн если не знает как это сдел, я вам помогу">Пересоздать</button>
+            <button id="startbutton" onclick="audioPlay('startbutton')" title="Как выглядит кнопка пск слева, винзу экрана? Четыре белых квадрата или кнопка ввиде круга">Пуск</button>
+            <button id="empty" onclick="audioPlay('empty')" title="пусто">пусто</button>
+            <button id="empty" onclick="audioPlay('empty')" title="пусто">пусто</button>
+          </div>
+        </div>
+
+
+        <h3 onclick="openbox('TelVis')">TelVis</h3>
+        <div id="TelVis"  style="display: none;">
+          <div>
+            <button id="allchannel" onclick="audioPlay('allchannel')" title="У вас сейчас все каналы не показывают?">Все каналы?</button>
+            <button id="onetv" onclick="audioPlay('onetv')" title="У вас один тв в квартире или несколько тв?">Один ТВ?</button>
+            <button id="check2tv" onclick="audioPlay('check2tv')" title="А второй тв проверяли, работает?">Проверяли</button>
+            <button id="errorscreen" onclick="audioPlay('errorscreen')" title="На экране телефизора есть сейчас какоето сообщение об ошибке?">Ошибка экрана</button>
+            <button id="lampstv" onclick="audioPlay('lampstv')" title="Какие лампоки сейчас у вас горят на приставке?">Лампочки</button>
+            <button id="pushbuttonON" onclick="audioPlay('pushbuttonON')" title="Приставка у вас сейчас не включена попробйте включите ее, на пульте от приставки нажимте кнопку включения">Включите</button>
+            <button id="checksocket" onclick="audioPlay('checksocket')" title="Само устройство подключено в розеку. Розетку проверяли, она рабочая?">Розетка?</button>
+            <button id="tvcabel" onclick="audioPlay('tvcabel')" title="На антенн кабе нет никаких у вас вид поврежд. Кабель ниг не переж, не перег, плотно подкл к устройств?">ТВ кабель</button>
+          </div>
+          <div>
+            <br />
+            <button id="reboottv" onclick="audioPlay('reboottv')" title="Если вы ране прист не перез перез её сейчас. Прист из розет отклю и включит её обрат">Перезагрузка</button>
+            <button id="logo" onclick="audioPlay('logo')" title="Надпись домру появилась при перезагрузке приставки?">Надпись</button>
+            <button id="saychanellnwork" onclick="audioPlay('saychanellnwork')" title="Какие каналы у вас сейчас не работают, можете назвать несколько?">Какие не раб?</button>
+            <button id="isintok" onclick="audioPlay('isintok')" title="А интернет нормально работает?">Инт норм?</button>
+            <button id="rebootroutbox" onclick="audioPlay('rebootroutbox')" title="Сейчас  данные на сервере обновил поробуйте отключите из розетки приставку и роутер. Затем включите сначала роутер потом приставку и проверьте сложность сохраниться или нет.">Перезаг</button>
+            <button id="TVbrand" onclick="audioPlay('TVbrand')" title="Какая марка ТВ у вас">Марка</button>
+            <button id="source" onclick="audioPlay('source')" title="Проверьте на пульте тв у вас должно быть кнопка соурсе, на кнопке нарисован прямоугольник, в который входит стрелка">Source</button>
+            <button id="input" onclick="audioPlay('input')" title="Проверьте на пульте тв у вас должно быть кнопка соурсе, на кнопке нарисован прямоугольник, в который входит стрелка">Input</button>
+            <button id="checksource" onclick="audioPlay('checksource')" title="Нажм на кнопку проверьте какаой источ у вас выбран hdmi, tv или как другой">Проверь</button>
+          </div>
+        </div>
+
+
+        <h3 onclick="openbox('Accrual')">Accrual</h3>
+        <div id="Accrual"  style="display: none;">
+          <div>
+            <button id="debt" onclick="audioPlay('debt')" title="По догов сейч вижу у вас есть задол по данн причи услу у вас сейч и не рабо. Необх внести оплат и услуги у вас снова возобн">Задолженность</button>
+            <button id="nocash" onclick="audioPlay('nocash')" title="Виж услу у вас не полач необх на счёт внести оплат и инте у вс снова заработа">Нет оплаты</button>
+            <button id="saynumcont" onclick="audioPlay('saynumcont')" title="Можете продиктовать номер догвора на который перечисляли платеж?">Номер чека</button>
+            <button id="action" onclick="audioPlay('action')" title="Виж что в пред периоде акция у вас законч и поэт стоимост у вас стала больш">Акция закончилась</button>
+            <button id="recalcforop" onclick="audioPlay('recalcforop')" title="В прошлом месяце был активирован обещанный платеж, при подключении обещанного платежа тариф активируется на месяц, списывается полная АП и образыуется Дз. У вас платеж текущий получается ушел в счет погашения дз. Я так понял, что в предыдущем месяе вы услугами пользовались несколько дней. Мне тогда необходимо будет сделать перерасчет за неиспользованную услугу.">ДЗ ОП моно</button>
+            <button id="TPbetter" onclick="audioPlay('TPbetter')" title="Такое иногда случается, появляются новые тарифы и они оказываются выгоднее чем текушие">Лучше</button>
+            <button id="canchangeTP" onclick="audioPlay('canchangeTP')" title="Могу поменять тариф на новый. Тариф в этом случае измениться с 1 числа след месяца">Поменять</button>
+            <button id="before21" onclick="audioPlay('before21')" title="Все в порядке у вас будет возмодность оплатит услуги до 21 числа">До 21</button>
+          </div>
+          <div>
+            <br>
+            <button id="okwhatwrong" onclick="audioPlay('okwhatwrong')" title="Вижу сейчас у вас всё оплачено, все услуги должны сечас корректно работать. Что сейчас не работает?">Всё ок</button>
+            <button id="nrenew" onclick="audioPlay('nrenew')" title="По договору у вас все впорядке, просто тариф не активировася автоматически. Сечас я тариф активирую, интернет у вас заработает в течении 3-5 минут.">Ок, включ</button>
+            <button id="egtpaymOK" onclick="audioPlay('egtpaymOK')" title="Да, вижу оплата пришла, все в порядке">Оплата пришла</button>
+            <button id="activtarif" onclick="audioPlay('activtarif')" title="Платеж ваш пришел, но тариф не активировался, тариф активирую, в течении 3-5 минут инт у вас заработатет">ПлатежОК</button>
+            <button id="Ngetpaym" onclick="audioPlay('Ngetpaym')" title="Оплата у вас еще не пришла, она может идти максимум 24 часа, так что давайте сейчас вам услуги разблокирую на 1 день, интернет заработает в течении 2-3 минут">Нет Опл, ОП</button>
+            <button id="befor1" onclick="audioPlay('befor1')" title="Оплату необходимо производить до 1 числа">До 1</button>
+            <button id="afterpay" onclick="audioPlay('afterpay')" title="У вас постоплатная система, то есть услугами сначала пользуетесь а в канце месяца их оплаичваете. Как квартплата">Постоплата</button>
+            <button id="10maxOP" onclick="audioPlay('10maxOP')" title="Могу подключить ОП на 10 дней максимум">ОП максимум</button>
+            <button id="yesOPget" onclick="audioPlay('yesOPget')" title="Да, давайте подключу, чтобы интернет у вас заработал, в течении 3-5 минут интернет возобновиться">ОП вкл</button>
+            <button id="can5day" onclick="audioPlay('can5day')" title="Могу активировать ОП на пять суток сейчас. это максимальный срок. Активировать">5 дней</button>
+          </div>
+        </div>
+
+
+        <h3 onclick="openbox('Tech')">Tech request</h3>
+        <div id="Tech"  style="display: none;">
+          <div>
+            <button id="createsz" onclick="audioPlay('createsz')" title="Для решения вашего воспра мне необхдимо бует создать заявку на техника, время когда техник сможет подойти я сейчас уточню">СЗ на ТС</button>
+            <button id="SZnotime" onclick="audioPlay('SZnotime')" title="Заявку я тогда оставлю чтобы техники проверели подлкючение в подъезде в течение 24 часов. Вашего присутсвия в этом случае не потребуется.">СЗ не дома</button>
+            <button id="contel" onclick="audioPlay('contel')" title="В качестве контактного телефона могу оставить тот, с которого вы сейчас звноите?">Контакт телефон</button>
+            <button id="cancelSZ" onclick="audioPlay('cancelSZ')" title="Вас понял, заявку отменяю">Отмена</button>
+            <button id="calltoday" onclick="audioPlay('calltoday')" title="Сегодня с вами связывались по заявке? (по СЗ вне графика)">Cвязывались</button>
+          </div>
+          <div>
+            <br>
+            <button id="forcheckeq" onclick="audioPlay('forcheckeq')" title="Для проверки оборудования вам будет удобно подойти в сервисный центр или чтобы техник пришел на дом?">Проверка оборуд</button>
+            <button id="ppr" onclick="audioPlay('ppr')" title="По вашему адресу проводятся планово профилактические работы, до 8 утра услуги не будут работать. После окончания прафилактических работ все услуги будут работать.">ППР</button>
+            <button id="crash" onclick="audioPlay('crash')" title="В дан момент вижу по ваш адр авари наш спец уже пров рабо по уст авар пока конкре завер раб не указа обычно усл восст в тече часа двух. также так ка усл не раб сделаю вам пер полн за тек день в кач компен">Авария</button>
+            <button id="crashstil" onclick="audioPlay('crashstil')" title="По вашему адресу я вижу еще продолжаются работы по устранению аварии">Авария ещё</button>
+            <button id="empty" onclick="audioPlay('empty')" title="пусто">пусто</button>
+            <button id="empty" onclick="audioPlay('empty')" title="пусто">пусто</button>
+            <button id="empty" onclick="audioPlay('empty')" title="пусто">пусто</button>
+          </div>
+        </div>
+
+
+        <h3 onclick="openbox('Other')">Other</h3>
+        <div id="Other"  style="display: none;">
+          <div>
+            <button id="closevas" onclick="audioPlay('closevas')" title="Дополнительные пакеты каналов я вам сейчас закрою, другие вопроы у вас еще будут?">Закрыть доп</button>
+            <button id="entertolk" onclick="audioPlay('entertolk')" title="Вход в лк происходит по номеру договора и паролю, либо по логину и паролю">Вход ЛК</button>
+            <button id="numconractSMS" onclick="audioPlay('numconractSMS')" title="Номер договора вышлю по смс, в течении 3-5 минут смс должно прийти на телефон.">СМС договор</button>
+            <button id="smsORsay" onclick="audioPlay('smsORsay')" title="Номер договора могу продиктовать либо выслать по смс">Продиктовать?</button>
+            <button id="logpassSMS" onclick="audioPlay('logpassSMS')" title="Логин и пароль вышлю по смс, в течении 3-5 минут смс должно прийти на телефон.">СМС лог\пар</button>
+            <button id="canpushSSID" onclick="audioPlay('canpushSSID')" title="Могу выслать вам проль от вай-фай на номер с которого вы сейчас звоните, подойдет вам так?">SSID</button>
+            <button id="tranfer208L" onclick="audioPlay('tranfer208L')" title="компания весткол и домру объединились, поэтому вы сейчас попали в контакт центр домру. Ваш договор еще в систему домру не перешел. Поэтому для решения вашего вопроса вас сейчас переведу на специалистов весткол">208Длинно</button>
+            <button id="tranfer208" onclick="audioPlay('tranfer208')" title="Для решиния вашего вопроса вас перевожу на специалистов весткол, не отключайтесь">208Коротко</button>
+          </div>
+          <div>
+            <br>
+            <button id="sayaddrcheck" onclick="audioPlay('sayaddrcheck')" title="Адрес ваш назовите, я пров есть ли те возм для подкл">Адрес подкл</button>
+            <button id="Ntechproperty" onclick="audioPlay('Ntechproperty')" title="Техничес возм для подкл по данн адресу сейч нет, то есть подключиться не возм">Нетвозможности</button>
+            <button id="transfer100" onclick="audioPlay('transfer100')" title="Вижу тех возмлжность для подключения есть. По подклчению вас перевожу на специалситов центра продаж. Они ответят на все ваши вопросу по подключению">100</button>
+            <button id="SZcontract" onclick="audioPlay('SZcontract')" title="Техниеская возможность для подключения есть. По данному вопросу я создам заявку, чтобы с вами связались и проинформировали по всем вопросам по подключению">СЗ подкл</button>
+            <button id="sayfio" onclick="audioPlay('sayfio')" title="Назовите ФИО на чьё имя будет заключаться договор">ФИО</button>
+            <button id="SZdone" onclick="audioPlay('SZdone')" title="Заявку я создал, др вопросы будут">СЗ сделал</button>
+            <button id="ryoucompany" onclick="audioPlay('ryoucompany')" title="Вы обращаетесь как юр лицо?">Юр?</button>
+            <button id="compsuppottransf" onclick="audioPlay('compsuppottransf')" title="Переведу вас тогда на поддержку юридиеских лиц, не отключайтесь">500</button>
+            <button id="intercom" onclick="audioPlay('intercom')" title="По домофону переведу вас на спецов по данной услуге, не отключайтесь">Домофон</button>
+          </div>
+        </div>
+
+
+        <h3 onclick="openbox('Operation')">Operation with contract</h3>
+        <div id="Operation"  style="display: none;">
+          <button id="canstop" onclick="audioPlay('canstop')" title="Да можно присотаноить услуги на некоторое время.">Да можно приост</button>
+          <button id="timeOFstop" onclick="audioPlay('timeOFstop')" title="С какого по какое число вы хотели бы сделать сделать приостановление">Число приост</button>
+          <button id="whatstop" onclick="audioPlay('whatstop')" title="Какие услуги хотели бы приостановить">Что приост</button>
+          <button id="stopdone" onclick="audioPlay('stopdone')" title="Приостановление я сделал, другие вопросы у вас еще будут">Сделал</button>
+          <button id="yesdelete" onclick="audioPlay('yesdelete')" title="Да, двавйте приост я отменю">Да, отменю</button>
+          <button id="WHdeletestop" onclick="audioPlay('WHdeletestop')" title="Когда вы хотели бы отменить присотановление">Когда</button>
+          <button id="stopdelete" onclick="audioPlay('stopdelete')" title="Приоставновление я отменил, др воспросы">Отменил</button>
+          <button id="empty" onclick="audioPlay('empty')" title="пусто">пусто</button>
+        </div>
+
+
+        <h3 onclick="openbox('GSK')">GSK</h3>
+        <div id="GSK"  style="display: none;">
+          <button id="GSKtransfer" onclick="audioPlay('GSKtransfer')" title="По расторжению договора переведу вас на старшего специалиста. Он сможет ответить на все ваши вопросы">Перевод</button>
+          <button id="transferGSK" onclick="audioPlay('transferGSK')" title="По данному вопросу я вас сейчас соединю со стар спец на лини остав не отключайтесь я вас переведу">Перевод2</button>
+          <button id="transferTOGSK" onclick="audioPlay('transferTOGSK')" title="На старшего специалиста я вас сейчас переведу, не отключайтесь">Перевод3</button>
+          <button id="SZGSK" onclick="audioPlay('SZGSK')" title="Для расторжения договора мне необходимо будет СЗ на старшего спец, чтобы он вам позвонил. Контактный телефон могу оставить тот, с которого вы сейчас звоните?">СЗрасторж</button>
+          <button id="SZokwait" onclick="audioPlay('SZokwait')" title="Заявку я создал, старший специалист с вами свяжется в ближайшее время, максимальный срок 48 часов/ По всем вопросам он вас проинф и сможе догов расторгн">СЗ ок, жди</button>
+          <button id="empty" onclick="audioPlay('empty')" title="пусто">пусто</button>
+          <button id="empty" onclick="audioPlay('empty')" title="пусто">пусто</button>
+          <button id="empty" onclick="audioPlay('empty')" title="пусто">пусто</button>
+        </div>
+
+
+        <h3 onclick="openbox('Phone')">Phone</h3>
+        <div id="Phone"  style="display: none;">
+          <button id="callhome" onclick="audioPlay('callhome')" title="Если раньше не пробовали, то попробуйте сейчас позвонить на ваш домашний номер телефона. Проверьте звонок прйжет или нет.">Позвоните домой</button>
+          <button id="tohomecall" onclick="audioPlay('tohomecall')" title="Если звоните с домашнего номера телефона на другие номера, звонки проходят?">На другие</button>
+          <button id="checkphcabel" onclick="audioPlay('checkphcabel')" title="Есть какие либо видимые повреждения телеф кабеля?">Повреждения</button>
+          <button id="loyalopen" onclick="audioPlay('loyalopen')" title="Могу сейчас вам в качесиве лояльности открыть доступ к услугам на 2 дня. Услуги заработают у вас в течении 3-5 минут. Подойдет вам такой вариант?">ОП бесплатно</button>
+          <button id="opyeswait" onclick="audioPlay('opyeswait')" title="ОП у вас активировался, все в порядке, интернет зараб через 10- 15 мин">ОО актив, жди</button>
+        </div>
+
+        <h3 onclick="openbox('word')">Слова</h3>
+        <div id="word"  style="display: none;">
+
+        </div>
+
+      </div>
+      <div id="trash">
+        <button type="button"onclick="speech()">Говорить</button>
+        <button type="button"onclick="send('adress/elv/264/35')">Адресс</button>
+        <button type="button"onclick="send('sescion')">Сессия</button>
+        <button type="button"onclick="send('hide')">Спрятать</button>
+        <button type="button"onclick="send('EQM')">EQM</button>
+        <button type="button"onclick="send('pxlColor/1453/105')">pxlColor</button>
+        <button type="button"onclick="deleteAll()">Test</button>
+        <button id="evning" onclick="audioPlay('evning')" title="Добрый вечер, меня зовут Никита. Слушаю вас">Вечер</button>
+      </div>
+      <div id="tip">
+        <br><input type="text" value="" id="answer" onchange="answer()" style="display: block;"><br>
+      </div>
+      <div id="dialog" class="dialog">
+      </div>
+    </div>
+
+    <div class="right">
+      <table>
+      <tr>
+        <td>Test</td>
+        <td><input type="checkbox" id="test" onchange="chck(this)"></td>
+      </tr>
+      <tr>
+        <td>Без звука</td>
+        <td><input type="checkbox" id="noSound" onchange="chck(this)"></td>
+      </tr>
+      <tr>
+        <td>ready</td>
+        <td><input type="checkbox" id="ready" onchange="chck(this)"></td>
+      </tr>
+      <tr>
+        <td>Admin/Oper</td>
+        <td>
+        <table>
+          <tr>
+            <td id="admin" class="up" onclick="chck(this)"></td>
+            <td id="oper" class="up" onclick="chck(this)"></td>
+          </tr>
+        </table>
+        </td>
+      </tr>
+      <tr>
+        <td>Crash</td>
+        <td><input type="checkbox" id="crash" onchange="chck(this)"></td>
+      </tr>
+      <tr>
+        <td>Sescion</td>
+        <td><input type="checkbox" id="sescion" onchange="chck(this)"></td>
+      </tr>
+      <tr>
+        <td>Balance</td>
+        <td><input type="text" id="balanse" onchange="chck(this)"></td>
+      </tr>
+      <tr>
+        <td>Debt</td>
+        <td><input type="text" id="debt" onchange="chck(this)"></td>
+      </tr>
+      <tr>
+        <td>
+          <button type="button" onclick="update()">Обновить</button>
+        </td>
+        <td>
+          <button type="button" onclick="answer()" id="postAnswer">Ответить</button>
+        </td>
+      </tr>
+     </table>
+    </div>
+
+  </body>
+
+</html>

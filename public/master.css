@@ -1,0 +1,36 @@
+*{
+ box-sizing: border-box;
+}
+
+body {
+  min-width: 780px;
+}
+
+.left {
+  float: left;
+  display: inline-block;
+  width: calc(100% - 265px);
+}
+
+.right {
+  float: right;
+  display: inline-block;
+  height: 100%;
+  width: 265px;
+}
+
+.up {
+  background:green;
+  width: 20px;
+  height: 20px;
+}
+
+.dawn {
+  background:red;
+  width: 20px;
+  height: 20px;
+}
+
+.dialog{
+  max-width: 100%
+}
