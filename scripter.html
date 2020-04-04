@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <title>Структура чат-бота</title>
+    <style media="screen">
+      .standart {
+        float: left;
+        display: inline-block;
+
+      }
+      .plus:hover {
+        cursor: pointer;
+      }
+      .plus{
+        float: left;
+        display: inline-block;
+        margin: 2px;
+
+      }
+    </style>
+    <script type="text/javascript">
+      function createDiv (thatdiv) {
+        let div = document.createElement('div')
+        div.className = 'standart'
+          let inp = document.createElement('input')
+          inp.type = 'text'
+          inp.onchange = 'add()'
+          div.appendChild(inp)
+        let parentDiv = thatdiv.parentElement
+        parentDiv.appendChild(div)
+      }
+
+      function add (thatButton) {
+        let inp = document.createElement('input')
+        inp.type = 'text'
+
+        div.appendChild(inp)
+      }
+    </script>
+  </head>
+  <body>
+    <div id="1" class="plus" onclick="createDiv(this)">
+      <p>+</p>
+    </div>
+  </body>
+</html>

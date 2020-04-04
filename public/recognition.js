@@ -69,6 +69,8 @@ function innerRecog(answer, arr) {
     } else {
       console.log('не получили ответа перезагру ли роутер');
     }
+  } else if (speechFlow[7] === 'checksocket') {
+    pasteText('Не прописано дальше для этой ветки')
   } else {
     console.log('ошибка в innerRecog()');
   }
@@ -149,7 +151,12 @@ function dialogConceptINT() {
     case undefined:
     console.log('здесь определить Nwork или Slow. пока всегда Nwork');
     speechFlow[0] = 'NWork'
-    dialogConceptINT()
+    send('move/1965/250')
+    .then(send('move/1965/250'))
+    .then(send('click'))
+    .then(send('move/1765/450'))
+    .then(send('click'))
+    .then(dialogConceptINT())
       break;
     case 'NWork':
     if (speechFlow[1] === undefined) {
@@ -164,7 +171,7 @@ function dialogConceptINT() {
         withoutWit = true
         aud.onended = speech()
       } else {
-        console.log('Не написано для нет роутера speechFlow[1]=false');
+        pasteText('Не написано для нет роутера')
       }
     } else if (dialogCondition(4, 5)) {
       if (speechFlow[4] === true) {
@@ -177,15 +184,14 @@ function dialogConceptINT() {
         speechFlow[5] = false
         speechFlow[6] = false
         speechFlow[7] = 'checksocket'
-        console.log('дальше не прописано');
         withoutWit = true
         aud.onended = speech()
       }
     } else if (dialogCondition(5, 6)) {
       if (speechFlow[5] === true) {
-        sescionUpdate()
-        console.log('дальше не прописано');
-        speechFlow[6] = true
+        console.log('установить проверку на время предыдущей сессии. Сейчас всегда обновилась');
+        audioPlay('checkconn')
+        speechFlow[6] = false
         dialogConceptINT()
       } else {
         audioPlay('rebootroutL')

@@ -9,6 +9,7 @@ exports.coordinates = function () {
 
 exports.move = function (x, y) {
   robot.moveMouse(x, y);
+  robot.setMouseDelay(200);
   return 'Передвинул на ' + x + ':' + y
 }
 
