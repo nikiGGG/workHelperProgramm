@@ -259,13 +259,19 @@ function determinationOfDialogConcept() {
 // добавляет кнопку-подсказку что говорить
 function addTip(tip) {
   let tipDiv = document.getElementById('tip')
-  if (tipDiv.firtChild === null) {
-    tipDiv.innerHTML = document.getElementById(tip)
+  const button = document.getElementById(tip)
+  const input = document.createElement('input')
+    input.type = 'button'
+    input.onclick =  function() {
+        audioPlay(tip)
+      };
+    input.title = button.title
+    input.value = button.innerText
+  if (tipDiv.innerText === null) {
+    tipDiv.appendChild(input)
   } else {
-    while (tipDiv.firtChild) {
-      tipDiv.removeChild(tipDiv.firtChild)
-    }
-    tipDiv.innerHTML = document.getElementById(tip)
+    tipDiv.innerText = null
+    tipDiv.appendChild(input)
   }
 }
 
