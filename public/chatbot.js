@@ -1,4 +1,5 @@
 let speechFlow = []//special for dialog info
+
 let witAI = {
   'adress': '',
   'router': '',

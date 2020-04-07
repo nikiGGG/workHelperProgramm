@@ -12,8 +12,8 @@ recognizer.onresult = function (event) {
   var result = event.results[event.resultIndex];
   if (result.isFinal) {
     if (withoutWit === false) {
-      getIntent(result[0].transcript)
-      pasteText('КЛИЕНТ: ' + result[0].transcript);
+      //getIntent(result[0].transcript)
+      //pasteText('КЛИЕНТ: ' + result[0].transcript);
     } else if (withoutWit === true) {
       innerRecog(result[0].transcript)
     } else {

@@ -1,5 +1,5 @@
 'use strict'
-
+// функция отправляет запрос на сервер
 async function send(name) {
   if (data.test === true) {
     console.log('не будет отправлено на сервер: ' + name);
@@ -11,7 +11,7 @@ async function send(name) {
     return dataFetch
   }
 }
-
+// х, н где находяться кнопки на удаленке
 let notTest = {
   'top': '330/340',
   'anticipation': '330/420',
@@ -23,7 +23,7 @@ let notTest = {
   'equip': '590/365',
   'IKTV': '650/365'
 }
-
+// данные для правой колонки
 let data = {
   'test': true,
   'noSound': true,
@@ -35,7 +35,7 @@ let data = {
   'balanse': 0,
   'debt': 0
 }
-
+// меняет цвет кнокпи EQM
 function changeEQM () {
   let admin = document.getElementById('admin').classList
   let oper = document.getElementById('oper').classList
@@ -50,7 +50,7 @@ function changeEQM () {
     oper.add(data.oper)
   }
 }
-
+// следит за изменением кнопок в левом div, и выполняет функции
 function chck(element) {
   if (element.type === 'text') {
     data[element.id] = element.value
@@ -109,7 +109,7 @@ function chck(element) {
     console.log('type is ' + element.type + 'and tag is ' + element.tagName);
   }
 }
-
+// обнавлеят данные в правой колонке
 function update() {
   for (var key in data) {
     let element = document.getElementById(key)
@@ -133,7 +133,7 @@ function update() {
     }
   }
 }
-
+// вставляет title из кнопки,которая запускает видео
 function pasteText(name, audio) {
   const p = document.createElement('p')
   if (document.getElementById('dialog') != undefined) {
@@ -160,7 +160,7 @@ function pasteText(name, audio) {
     }
   }
 }
-
+// проверяет цвет кнопки реди, с помощью robotjs
 function readyCheck() {
   send('pxlColor/1453/105')
   .then(res => {
@@ -180,7 +180,7 @@ function readyCheck() {
     }
   })
 }
-
+// Обрабатывает запросы в input, когда Без звука
 function answer() {
   let myAnswer = document.getElementById('answer').value
   document.getElementById('answer').value = ''
@@ -191,16 +191,16 @@ function answer() {
     getIntent(myAnswer)
   }
 }
-
+// функция, выполняется когда начало звонка
 function start() {
   audioPlay('evning')
   aud.onended = speech()
 }
-
+// функция, выполняется при завершенном звонке
 function stop() {
 speechFlow = [];
 }
-
+// возвращает title(что говориться в записи)
 function getFrase(name) {
   audioPlay(name)
   return document.getElementById(name).title
