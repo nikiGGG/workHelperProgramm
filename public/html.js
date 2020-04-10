@@ -5,7 +5,7 @@ async function send(name) {
     console.log('не будет отправлено на сервер: ' + name);
     return data.test
   } else {
-    const resp = await fetch('http://localhost:3000/robot/' + name, { method: 'get' })
+    const resp = await fetch('http://localhost:3000/' + name, { method: 'get' })
     const dataFetch = await resp.json()
     console.log(dataFetch);
     return dataFetch
@@ -25,7 +25,7 @@ let notTest = {
 }
 // данные для правой колонки
 let data = {
-  'test': true,
+  'test': false,
   'noSound': true,
   'ready': true,
   'admin': 'up',

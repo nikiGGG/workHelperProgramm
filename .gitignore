@@ -1,2 +1,4 @@
 /public/audio/**
 *.traineddata
+/node_modules
+*.jpg

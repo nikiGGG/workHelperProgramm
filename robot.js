@@ -97,7 +97,7 @@ exports.adress = function (str, app, num) {
   robot.mouseClick();
   return 'adress done'
 }
-
+robot.moveMouse(1000, 200)
 /*
 // команды
 robot.moveMouse(x, y)

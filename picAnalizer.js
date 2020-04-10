@@ -3,14 +3,11 @@ const { createWorker } = require('tesseract.js');
 
 const worker = createWorker();
 
-exports.analizer = async function (picture) {
-  (async () => {
+module.exports = async function analizer (pic) {
     await worker.load();
     await worker.loadLanguage('rus');
     await worker.initialize('rus');
-    const { data: { text } } = await worker.recognize(picture);
-    console.log(text);
+    const { data: { text } } = await worker.recognize(pic);
     return text
     await worker.terminate();
-  })();
 }

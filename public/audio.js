@@ -1,3 +1,4 @@
+// код для воспроизведения аудио путь 'audio/+ name +.m4a'
 const aud = new Audio()
 function audioPlay(name) {
   if (data.noSound === false) {
@@ -9,6 +10,25 @@ function audioPlay(name) {
     pasteText(name, true)
   } else {
     console.log('Ошибка в audioPlay(name) name:' + name + ', data.noSound:' + data.noSound);
+  }
+}
+
+function micCapture() {
+  mediaRecorder.ondataavailable = function(e) {
+    this.chunks.push(e.data);
+    if (this.chunks.length >= 400)
+    {
+        this.sendData(this.chunks);
+        this.chunks = [];
+    }
+  };
+  mediaRecorder.sendData = function(buffer) {
+      let blob = new Blob(buffer, { 'type' : 'audio/ogg' });
+      console.log(blob);
+      // const resp = await fetch('http://localhost:3000/' + name, { method: 'get' })
+      // const dataFetch = await resp.json()
+      // console.log(dataFetch);
+      // return dataFetch
   }
 }
 

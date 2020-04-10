@@ -17,23 +17,6 @@ app.get("/", function(request, response){
 });
 
 let robo = require('./robot')
-app.get('/move', function (req, res) {
-  robo.move(335,50)
-  robo.click()
-  robo.type('nikita the best')
-  res.json('сделал');
-});
-
-app.get('/pxlColor*', function (req, res) {
-  let pxl = req.url.split('.').slice(1,3)
-  res.json(robo.pxlColor(pxl[0], pxl[1]));
-});
-
-app.get('/test.*', function (req, res) {
-  let test = req.url.split('.').slice(1,3)
-  res.json(test);
-});
-
 app.get('/robot/*', function (req, res) {
   let arrURL = req.url.split('/')
   if (arrURL.length === 6) {
@@ -43,8 +26,20 @@ app.get('/robot/*', function (req, res) {
   } else if (arrURL.length === 4) {
     res.json(robo[arrURL[2]](arrURL[3]));
   } else {
+  console.log(arrURL, req.url);
   res.json(robo[arrURL[2]]());
   }
 });
+
+let analizer = require('./picAnalizer')
+app.get('/analize/*', function (req, res) {
+  let arrURL = req.url.split('/')
+  analizer(arrURL[2])
+  .then(response => {
+    res.json(response)
+  })
+});
+
+app.post('/voice', )
 
 app.listen(3000);
