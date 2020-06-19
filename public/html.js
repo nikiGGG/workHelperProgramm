@@ -1,39 +1,45 @@
 'use strict'
 // функция отправляет запрос на сервер
 async function send(name) {
-  if (data.test === true) {
+  if(data.test) name = testSendDots(name)
+  if (data.serverBock === true) {
     console.log('не будет отправлено на сервер: ' + name);
-    return data.test
   } else {
     const resp = await fetch('http://localhost:3000/' + name, { method: 'get' })
     const dataFetch = await resp.json()
-    console.log(dataFetch);
+    if(data.sendLogs)console.log(dataFetch);
     return dataFetch
   }
 }
-// х, н где находяться кнопки на удаленке
-let notTest = {
-  'top': '330/340',
-  'anticipation': '330/420',
-  'street': '180/320',
-  'info': '330/365',
-  'pril': '380/365',
-  'diagnostic': '450/365',
-  'messages': '520/365',
-  'equip': '590/365',
-  'IKTV': '650/365'
+// отправка данных на сервер
+function sendData (dat) {
+  if (data.serverBock === true) {
+    console.log('не будет сохранён диалог на сервере');
+  } else {
+    fetch('http://localhost:3000/data', {
+    method: 'post',
+    headers: {
+      'Accept': 'application/json, text/plain, */*',
+      'Content-Type': 'application/json'
+    },
+    body: JSON.stringify(dat)}).then(res=>res.json())
+    .then(res => console.log(res));
+  }
 }
 // данные для правой колонки
 let data = {
-  'test': false,
-  'noSound': true,
-  'ready': true,
-  'admin': 'up',
-  'oper': 'up',
-  'crash': false,
-  'sescion': false,
-  'balanse': 0,
-  'debt': 0
+  'serverBock': false,// не отправляет на сервер. send() и sendData() не выполняеся
+  'test': false,// меняет местоположение точек на удаленки на тестовеые
+  'noSound': false,// не воспроизводит аудио, не запускает прослушивание ответа, ждёт ответа в поле input(id='answer')
+  'ready': true,// если меняется на true-запускает stop(),на false-start()
+  'sendLogs': false,// отменяет\выводит логи в send()
+  'readyCheck': false,// включает\отключает проверку кнопки реди
+  'admin': 'up',// для элемента Admin/Oper на стороне клиента
+  'oper': 'up',// для элемента Admin/Oper на стороне клиента
+  'crash': false,// для элемента crash на стороне клиента
+  'sescion': false,// для элемента sescion на стороне клиента
+  'balanse': 0,// для элемента balanse на стороне клиента
+  'debt': 0,// для элемента debt на стороне клиента
 }
 // меняет цвет кнокпи EQM
 function changeEQM () {
@@ -77,7 +83,6 @@ function chck(element) {
         case true:
           //console.log('chck(): stop dialog');
           data[element.id] = element.checked;
-          document.getElementById('dialog').remove();
           stop();
           break;
         case false:
@@ -162,22 +167,22 @@ function pasteText(name, audio) {
 }
 // проверяет цвет кнопки реди, с помощью robotjs
 function readyCheck() {
-  send('pxlColor/1453/105')
+  send('robot/pxlColor/1465/105')
   .then(res => {
-    if (res === '#529d14' && data.ready === false) {
+    if (/#b...../.test(res) && data.ready === false || /#af..../.test(res) && data.ready === false) {
       data.ready = true
       update()
-      start()
-    } else if (res === '#c5740f' && data.ready === true) {
+      stop()
+    } else if (/#f6..../.test(res) && data.ready === true) {
       data.ready = false
       update()
-      console.log('stop');
-    } else if (res === '#b51a01') {
-      console.log('Не в работе');
-      update()
-    } else {
-      console.log('Не подключён');
-    }
+      start()
+     } //else {
+    //   if(/#ed..../.test(res)) {console.log('не на линии ' + res);}
+    //   else if(/#b...../.test(res) || /#af..../.test(res)) {console.log('реди ' + res);}
+    //   else if(/#f6..../.test(res)) {console.log('в звонке ' + res);}
+    //   else {console.log('Не видно кнопки ready ' + res);}
+    // }
   })
 }
 // Обрабатывает запросы в input, когда Без звука
@@ -192,21 +197,32 @@ function answer() {
   }
 }
 // функция, выполняется когда начало звонка
+let date = new Date()
 function start() {
-  audioPlay('evning')
-  aud.onended = speech()
+  if (date.getHours() > 21) {
+    audioPlay('evning')
+  } else {
+    audioPlay('day')
+  }
 }
 // функция, выполняется при завершенном звонке
 function stop() {
-speechFlow = [];
+  document.getElementById('dialog').remove()
+  sendData(clientSpeech)
+  for (var key in firstIntent) {
+    firstIntent[key] = 0
+  }
+  clientSpeech = []
+  speechFlow = []
+  hideAll()
 }
 // возвращает title(что говориться в записи)
 function getFrase(name) {
   audioPlay(name)
   return document.getElementById(name).title
 }
-
-/*let timerId = setTimeout(function tick() {
-  readyCheck()
+// каждые двесекунды запускает readyCheck(), если data.readyCheck=true
+let timerId = setTimeout(function tick() {
+  if(data.readyCheck)readyCheck()
   timerId = setTimeout(tick, 2000); // (*)
-}, 2000);*/
+}, 2000);

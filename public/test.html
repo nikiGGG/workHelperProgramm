@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <title>Тестовый</title>
+    <script type="text/javascript">
+      function test(num) {
+        let summ = document.getElementById('summ')
+        let numder = num.value.split(' ')
+        if(document.getElementById('test').checked) numder[1] = +numder[1] + 247
+        summ.value = +numder[0] + 1366 + '/' + numder[1]
+        num.value = ''
+      }
+    </script>
+  </head>
+  <body>
+    <input type="text" value="" id="num" onchange="test(this)"> <br>
+    <input type="text" id="summ"><br>
+    <table>
+      <tr>
+        <td>Тестовый</td>
+        <td><input type="checkbox" id="test"></td>
+      </tr>
+    </table>
+  </body>
+</html>

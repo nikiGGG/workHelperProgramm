@@ -9,15 +9,18 @@
     <script src="audio.js" type="text/javascript"></script>
     <script src="recognition.js" type="text/javascript"></script>
     <script src="toRobot.js" type="text/javascript"></script>
+    <script src="forHTMLpage.js" type="text/javascript"></script>
     <link rel="stylesheet" href="master.css">
+    <link rel="shortcut icon" href="favicon.ico" type="image/x-icon">
   </head>
 
   <body onload="update()">
 
     <div class="left" id="left">
-      <div style="display: none;">
-        <h3  onclick="openbox('General')">General</h3>
-        <div id="General" style="display: block;">
+      <p onclick="openbox(this)" style="margin: 0px; cursor: pointer">Full</p>
+      <div id="Full"  style="display: none;">
+        <h3  onclick="openbox(this)">General</h3>
+        <div id="General" style="display: none;">
           <div>
             <button id="evning" onclick="audioPlay('evning')" title="Добрый вечер, меня зовут Никита. Слушаю вас">Вечер</button>
             <button id="day" onclick="audioPlay('day')" title="Добрый день, меня зовут Никита. Слушаю вас">День</button>
@@ -47,9 +50,10 @@
             <button id="actionPristavka1" onclick="audioPlay('actionPristavka1')" title="На данный вопрос я вам уже отвечал, друие вопросы у вас еще будут?">ПриставкаЕ</button>
             <button id="actionPristavka2" onclick="audioPlay('actionPristavka2')" title="Если других вопросов у вас нет я звонок завершаю, доброго дня.">Приставка</button>
           </div>
-          </div>
-          <h3  onclick="openbox('Internet')">Internet</h3>
-          <div id="Internet" style="display: none;">
+        </div>
+
+        <h3  onclick="openbox(this)">Internet</h3>
+        <div id="Internet" style="display: none;">
           <div>
             <button id="concrete" onclick="audioPlay('concrete')" title="Сайты вообще не открываются, или открываются но медленно?">Уточните</button>
             <button id="router" onclick="audioPlay('router')" title="К инт вы подкл через вай роутер или кабель у вас ид напр из подъ?">Роутер</button>
@@ -76,6 +80,7 @@
           <div>
             <br>
             <button id="checkconn" onclick="audioPlay('checkconn')" title="Сзади вай фай роутера у вас должен быть один разъем синего или красного цвета. В этот разъем должен быть подключен кабель из подъезда. Проверьте верно у вас подключено или нет.">Красный разъём</button>
+            <button id="wifiLevel" onclick="audioPlay('wifiLevel')" title="Уровень сигнала wi-fi у вас на устройствах выше среднего показывает? Обычно это палочки такие">Сигнал?</button>
             <button id="checkintafses" onclick="audioPlay('checkintafses')" title="Вижу сессия интрнет у вас появилась, проверьте инт заработал?">Сессия ОК,проверь</button>
             <button id="checklogpasRout" onclick="audioPlay('checklogpasRout')" title="Сейчас необходимо будет проверить верно ли у вас в настройках роутера указаны логин и пароль">Верный лог?</button>
             <button id="19216801" onclick="audioPlay('19216801')" title="Для проверки откройте любой браузер и вверху в адресной строке наберите цифры которые я сейчас продиктую. Скажите когда начать диктовать">19216801</button>
@@ -116,8 +121,7 @@
           </div>
         </div>
 
-
-        <h3 onclick="openbox('TelVis')">TelVis</h3>
+        <h3 onclick="openbox(this)">TelVis</h3>
         <div id="TelVis"  style="display: none;">
           <div>
             <button id="allchannel" onclick="audioPlay('allchannel')" title="У вас сейчас все каналы не показывают?">Все каналы?</button>
@@ -132,6 +136,7 @@
           <div>
             <br />
             <button id="reboottv" onclick="audioPlay('reboottv')" title="Если вы ране прист не перез перез её сейчас. Прист из розет отклю и включит её обрат">Перезагрузка</button>
+            <button id="reCabel" onclick="audioPlay('reCabel')" title="Попробуйте также антенный кабель от приставки отключите и включите её обратно проверьте каналы заработают или нет?">Кабель</button>
             <button id="logo" onclick="audioPlay('logo')" title="Надпись домру появилась при перезагрузке приставки?">Надпись</button>
             <button id="saychanellnwork" onclick="audioPlay('saychanellnwork')" title="Какие каналы у вас сейчас не работают, можете назвать несколько?">Какие не раб?</button>
             <button id="isintok" onclick="audioPlay('isintok')" title="А интернет нормально работает?">Инт норм?</button>
@@ -143,8 +148,7 @@
           </div>
         </div>
 
-
-        <h3 onclick="openbox('Accrual')">Accrual</h3>
+        <h3 onclick="openbox(this)">Accrual</h3>
         <div id="Accrual"  style="display: none;">
           <div>
             <button id="debt" onclick="audioPlay('debt')" title="По догов сейч вижу у вас есть задол по данн причи услу у вас сейч и не рабо. Необх внести оплат и услуги у вас снова возобн">Задолженность</button>
@@ -155,6 +159,8 @@
             <button id="TPbetter" onclick="audioPlay('TPbetter')" title="Такое иногда случается, появляются новые тарифы и они оказываются выгоднее чем текушие">Лучше</button>
             <button id="canchangeTP" onclick="audioPlay('canchangeTP')" title="Могу поменять тариф на новый. Тариф в этом случае измениться с 1 числа след месяца">Поменять</button>
             <button id="before21" onclick="audioPlay('before21')" title="Все в порядке у вас будет возмодность оплатит услуги до 21 числа">До 21</button>
+            <button id="loyalopen" onclick="audioPlay('loyalopen')" title="Могу сейчас вам в качесиве лояльности открыть доступ к услугам на 2 дня. Услуги заработают у вас в течении 3-5 минут. Подойдет вам такой вариант?">ОП бесплатно</button>
+            <button id="opyeswait" onclick="audioPlay('opyeswait')" title="ОП у вас активировался, все в порядке, интернет зараб через 10- 15 мин">ОО актив, жди</button>
           </div>
           <div>
             <br>
@@ -171,8 +177,7 @@
           </div>
         </div>
 
-
-        <h3 onclick="openbox('Tech')">Tech request</h3>
+        <h3 onclick="openbox(this)">Tech</h3>
         <div id="Tech"  style="display: none;">
           <div>
             <button id="createsz" onclick="audioPlay('createsz')" title="Для решения вашего воспра мне необхдимо бует создать заявку на техника, время когда техник сможет подойти я сейчас уточню">СЗ на ТС</button>
@@ -193,8 +198,7 @@
           </div>
         </div>
 
-
-        <h3 onclick="openbox('Other')">Other</h3>
+        <h3 onclick="openbox(this)">Other</h3>
         <div id="Other"  style="display: none;">
           <div>
             <button id="closevas" onclick="audioPlay('closevas')" title="Дополнительные пакеты каналов я вам сейчас закрою, другие вопроы у вас еще будут?">Закрыть доп</button>
@@ -220,8 +224,7 @@
           </div>
         </div>
 
-
-        <h3 onclick="openbox('Operation')">Operation with contract</h3>
+        <h3 onclick="openbox(this)">Operation</h3>
         <div id="Operation"  style="display: none;">
           <button id="canstop" onclick="audioPlay('canstop')" title="Да можно присотаноить услуги на некоторое время.">Да можно приост</button>
           <button id="timeOFstop" onclick="audioPlay('timeOFstop')" title="С какого по какое число вы хотели бы сделать сделать приостановление">Число приост</button>
@@ -233,8 +236,7 @@
           <button id="empty" onclick="audioPlay('empty')" title="пусто">пусто</button>
         </div>
 
-
-        <h3 onclick="openbox('GSK')">GSK</h3>
+        <h3 onclick="openbox(this)">GSK</h3>
         <div id="GSK"  style="display: none;">
           <button id="GSKtransfer" onclick="audioPlay('GSKtransfer')" title="По расторжению договора переведу вас на старшего специалиста. Он сможет ответить на все ваши вопросы">Перевод</button>
           <button id="transferGSK" onclick="audioPlay('transferGSK')" title="По данному вопросу я вас сейчас соединю со стар спец на лини остав не отключайтесь я вас переведу">Перевод2</button>
@@ -246,49 +248,41 @@
           <button id="empty" onclick="audioPlay('empty')" title="пусто">пусто</button>
         </div>
 
-
-        <h3 onclick="openbox('Phone')">Phone</h3>
+        <h3 onclick="openbox(this)">Phone</h3>
         <div id="Phone"  style="display: none;">
           <button id="callhome" onclick="audioPlay('callhome')" title="Если раньше не пробовали, то попробуйте сейчас позвонить на ваш домашний номер телефона. Проверьте звонок прйжет или нет.">Позвоните домой</button>
           <button id="tohomecall" onclick="audioPlay('tohomecall')" title="Если звоните с домашнего номера телефона на другие номера, звонки проходят?">На другие</button>
           <button id="checkphcabel" onclick="audioPlay('checkphcabel')" title="Есть какие либо видимые повреждения телеф кабеля?">Повреждения</button>
-          <button id="loyalopen" onclick="audioPlay('loyalopen')" title="Могу сейчас вам в качесиве лояльности открыть доступ к услугам на 2 дня. Услуги заработают у вас в течении 3-5 минут. Подойдет вам такой вариант?">ОП бесплатно</button>
-          <button id="opyeswait" onclick="audioPlay('opyeswait')" title="ОП у вас активировался, все в порядке, интернет зараб через 10- 15 мин">ОО актив, жди</button>
-        </div>
-
-        <h3 onclick="openbox('word')">Слова</h3>
-        <div id="word"  style="display: none;">
-
         </div>
 
       </div>
-      <div id="trash">
-        <button type="button"onclick="speech()">Говорить</button>
-        <button type="button"onclick="send('adress/elv/264/35')">Адресс</button>
-        <button type="button"onclick="send('sescion')">Сессия</button>
-        <button type="button"onclick="send('hide')">Спрятать</button>
-        <button type="button"onclick="send('EQM')">EQM</button>
-        <button type="button"onclick="send('pxlColor/1453/105')">pxlColor</button>
-        <button type="button"onclick="addTip('evning')">addTip</button>
-        <button id="evning" onclick="audioPlay('evning')" title="Добрый вечер, меня зовут Никита. Слушаю вас">Вечер</button>
+      <div id="frequent">
+        <button id="recog" type="button" onclick="speech()">Распознать</button>
+        <button id="sayappart" onclick="audioPlay('sayappart')" title="Назовите квартиру">Квартира?</button>
+        <button id="adress" onclick="audioPlay('adress')" title="Давайте я проерю. Адрес ваш пожалуйста назовите">Адрес</button>
+        <button id="check" onclick="audioPlay('check')" title="Сейчас я всё проверю на линии оставайтесь, не отключайтесь">Проверю</button>
+        <button id="finish" onclick="audioPlay('finish')" title="Вам спас за звонок. На лин сейчас также пож ост чтоб оценить мою конс">Завершение1</button>
+        <button id="yesright" onclick="audioPlay('yesright')" title="Да, всё верно">Верно</button>
+        <button id="listening" onclick="audioPlay('listening')" title="Да, слушаю вас">Слушаю</button>
+        <button id="understand" onclick="audioPlay('understand')" title="Да, понял вас">Понял</button>
+        <button id="wait" onclick="audioPlay('wait')" title="На линии сейчас ожидайте, я инф уточню потреуется букв минута, не отключайтесь">Ожидайте</button>
+        <button id="actionPristavka1" onclick="audioPlay('actionPristavka1')" title="дополнительная вас проинформируют сейчас проводится акция у вас все дополнительные пакеты каналов будут бесплатными на 1 год">ПриставкаЕ</button>
+
       </div>
       <div id="tip">
-        <br><input type="text" value="" id="answer" onchange="answer()" style="display: block;"><br>
+      </div>
+      <div>
+        <input type="text" value="" id="answer" onchange="answer()" style="display: none;">
+      </div>
+      <div id="text">
+
       </div>
       <div id="dialog" class="dialog">
       </div>
-    </div>
+      </div>
 
     <div class="right">
       <table>
-      <tr>
-        <td>Test</td>
-        <td><input type="checkbox" id="test" onchange="chck(this)"></td>
-      </tr>
-      <tr>
-        <td>Без звука</td>
-        <td><input type="checkbox" id="noSound" onchange="chck(this)"></td>
-      </tr>
       <tr>
         <td>ready</td>
         <td><input type="checkbox" id="ready" onchange="chck(this)"></td>
@@ -305,28 +299,40 @@
         </td>
       </tr>
       <tr>
-        <td>Crash</td>
+        <td>Авария</td>
         <td><input type="checkbox" id="crash" onchange="chck(this)"></td>
       </tr>
       <tr>
-        <td>Sescion</td>
+        <td>Сессия</td>
         <td><input type="checkbox" id="sescion" onchange="chck(this)"></td>
       </tr>
       <tr>
-        <td>Balance</td>
+        <td>Баланс</td>
         <td><input type="text" id="balanse" onchange="chck(this)"></td>
       </tr>
       <tr>
-        <td>Debt</td>
+        <td>Долг</td>
         <td><input type="text" id="debt" onchange="chck(this)"></td>
       </tr>
       <tr>
-        <td>
-          <button type="button" onclick="update()">Обновить</button>
-        </td>
-        <td>
-          <button type="button" onclick="answer()" id="postAnswer">Ответить</button>
-        </td>
+        <td>readyCheck</td>
+        <td><input type="checkbox" id="readyCheck" onchange="chck(this)"></td>
+      </tr>
+      <tr>
+        <td>sendLogs</td>
+        <td><input type="checkbox" id="sendLogs" onchange="chck(this)"></td>
+      </tr>
+      <tr>
+        <td>serverBlock</td>
+        <td><input type="checkbox" id="serverBock" onchange="chck(this)"></td>
+      </tr>
+      <tr>
+        <td>Test</td>
+        <td><input type="checkbox" id="test" onchange="chck(this)"></td>
+      </tr>
+      <tr>
+        <td>Без звука</td>
+        <td><input type="checkbox" id="noSound" onchange="chck(this)"></td>
       </tr>
      </table>
     </div>

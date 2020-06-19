@@ -2,3 +2,4 @@
 *.traineddata
 /node_modules
 *.jpg
+*.json

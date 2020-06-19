@@ -1,7 +1,31 @@
+let clientSpeech = [] // собираются фразы клиента
+let speechFlow = [] // собирается информация о текущем диалоге с клиентом
+let firstIntent = {
+  'адрес': 0,
+  'adress': 0,
+  'не работа': 0,
+  'медленно': 0,
+  'телеви': 0,
+  'не показыв': 0,
+  'канал': 0,
+  'интернет': 0,
+  'роутер': 0,
+  'вай': 0,
+  'ошибка': 0,
+  'все': 0,
+  'перезагру': 0,
+  'отключи': 0,
+  'растор': 0,
+  'балан': 0,
+  'денег': 0,// сколько денег на договоре
+  'договоре': 0,
+  'приостонов': 0,
+  'приостонов': 0,
+}
 // узнает есть ли в answer какие то слова и направляет в следущую ветку
 function innerRecog(answer, arr) {
   if (speechFlow[1] === 'onetv') {
-    if (findTrue('один', answer) === true) {
+    if (findTrue(['один', '1'], answer) === true) {
       speechFlow[1] = true
       dialogConceptTV()
     } else if (findTrue(['два', 'три', 'четыре', '2', '3', '4'], answer) === true) {
@@ -71,11 +95,61 @@ function innerRecog(answer, arr) {
     }
   } else if (speechFlow[7] === 'checksocket') {
     pasteText('Не прописано дальше для этой ветки')
+  } else if (speechFlow[0] === undefined) {
+    firstTouch(answer)
+  } else if (true) {
+
   } else {
     console.log('ошибка в innerRecog()');
   }
 }
-
+// работает с первыми фразами клиента
+function firstTouch (text) {
+  findinObj(text)
+  findAdres(text)
+  // сделать здесь проверку на адресс
+  if (firstIntent['адрес'] === 1) {
+    if (speechFlow[0] != undefined) {
+      addTip('check')
+      //checkContractExist()
+        if (firstIntent['интернет'] === 1) {
+          if (firstIntent['не работа'] === 1) {
+            speechFlow[0] = 'NWork'
+            dialogConceptINT()
+          } else if (firstIntent['медленно'] === 1) {
+            speechFlow[0] = 'Slow'
+            dialogConceptINT()
+          }
+        } else if (firstIntent['телеви'] === 1) {
+          if (firstIntent['не работа'] === 1 || firstIntent['не показыв'] === 1) {
+            speechFlow[0] = 'check'
+            dialogConceptTV()
+          }
+        } else if (firstIntent['канал'] === 1) {
+          if (firstIntent['все'] === 1) {
+            speechFlow[0] = 'check'
+            dialogConceptTV()
+          } else {
+            speechFlow[0] = 'check'
+            dialogConceptTV()
+            console.log('Уточнить все каналы не показывают или некоторые');
+          }
+        }else {
+          console.log('Ошибка в распозновании первой фразы клиента');
+        }
+    } else if (speechFlow[0] === undefined) {
+      addTip('listening')
+    } else {
+      console.log('ошибка в определении адреса/причины');
+    }
+  }else if (firstIntent['адрес'] === 0) {
+    addTip('adress')
+    // не заню зачем это, вроде чтобы когда справшиваешь адрес потом не пспрашиват причину снова
+    // if (isTrue (firstIntent) != '') {
+    //   console.log('Exist');
+    // }
+  }
+}
 // обрабатывает разговор по линии проблем с ТВ
 function dialogConceptTV() {
   switch (speechFlow[0]) {
@@ -86,17 +160,15 @@ function dialogConceptTV() {
       break;
     case 'KTV':
     if (speechFlow[1] === undefined) {
-          audioPlay('onetv')
+          addTip('onetv')
           speechFlow[1] = 'onetv'
           withoutWit = true
-          aud.onended = speech()
     }
     else if (dialogCondition(1, 3)) {
       if (speechFlow[1] === true) {
-        audioPlay('allchannel')
+        addTip('allchannel')
         speechFlow[3] = 'allchannel'
         withoutWit = true
-        aud.onended = speech()
       }
       if (speechFlow[1] === false) {
         console.log('Не расписано дл этого');
@@ -104,10 +176,9 @@ function dialogConceptTV() {
     }
     else if (dialogCondition(3, 4)) {
       if (speechFlow[3] === true) {
-        audioPlay('errorscreen')
+        addTip('errorscreen')
         speechFlow[4] = 'errorscreen'
         withoutWit = true
-        aud.onended = speech()
       }
       if (speechFlow[3] === false) {
         console.log('Не расписано дл этого');
@@ -115,10 +186,9 @@ function dialogConceptTV() {
     }
     else if (dialogCondition(4, 5)) {
       if (speechFlow[4] === true) {
-        audioPlay('tvcabel')
+        addTip('tvcabel')
         speechFlow[5] = 'tvcabel'
         withoutWit = true
-        aud.onended = speech()
       }
       if (speechFlow[4] === false) {
         console.log('Не расписано дл этого');
@@ -126,10 +196,9 @@ function dialogConceptTV() {
     }
     else if (dialogCondition(5, 6)) {
       if (speechFlow[5] === true) {
-        audioPlay('createsz')
+        addTip('createsz')
         speechFlow[6] = 'createsz'
         withoutWit = true
-        aud.onended = speech()
       }
       if (speechFlow[5] === false) {
         console.log('Не расписано дл этого');
@@ -139,65 +208,57 @@ function dialogConceptTV() {
       console.log('не сработало dialogConceptTV()' + speechFlow);
     }
       break;
+    case 'DTV':
+      console.log('Попал в Dom.ruTV');
+      break;
     default:
     console.log('default in dialogConceptTV()');
   }
 
 }
-
 // обрабатывает разговор по линии проблем с ИНТ
 function dialogConceptINT() {
   switch (speechFlow[0]) {
     case undefined:
     console.log('здесь определить Nwork или Slow. пока всегда Nwork');
     speechFlow[0] = 'NWork'
-    send('move/1965/250')
-    .then(send('move/1965/250'))
-    .then(send('click'))
-    .then(send('move/1765/450'))
-    .then(send('click'))
-    .then(dialogConceptINT())
       break;
     case 'NWork':
     if (speechFlow[1] === undefined) {
-      audioPlay('router')
+      //firstScriptServicesTouch()
+      addTip('router')
       speechFlow[1] = 'router'
       withoutWit = true
-      aud.onended = speech()
     } else if (dialogCondition(1, 4)) {
       if (speechFlow[1] === true) {
-        audioPlay('lamps')
+        addTip('lamps')
         speechFlow[4] = 'lamps'
         withoutWit = true
-        aud.onended = speech()
       } else {
         pasteText('Не написано для нет роутера')
       }
     } else if (dialogCondition(4, 5)) {
       if (speechFlow[4] === true) {
-        audioPlay('reboot')
+        addTip('reboot')
         speechFlow[5] = 'reboot'
         withoutWit = true
-        aud.onended = speech()
       } else {
-        audioPlay('checksocket')
+        addTip('checksocket')
         speechFlow[5] = false
         speechFlow[6] = false
         speechFlow[7] = 'checksocket'
         withoutWit = true
-        aud.onended = speech()
       }
     } else if (dialogCondition(5, 6)) {
       if (speechFlow[5] === true) {
         console.log('установить проверку на время предыдущей сессии. Сейчас всегда обновилась');
-        audioPlay('checkconn')
+        addTip('checkconn')
         speechFlow[6] = false
         dialogConceptINT()
       } else {
-        audioPlay('rebootroutL')
+        addTip('rebootroutL')
         speechFlow[6] = 'rebootroutL'
         withoutWit = true
-        aud.onended = speech()
       }
     } else if (dialogCondition(6, 7)) {
       if (speechFlow[6] === true) {
@@ -211,8 +272,7 @@ function dialogConceptINT() {
       break;
   }
 }
-
-// Найти в string слово word. Если есть возвращает true
+// Ищет в string слово, массив слов 'word'. Если есть возвращает true
 function findTrue (word, string) {
   let arr = string.split(' ')
   let bool
@@ -224,7 +284,37 @@ function findTrue (word, string) {
     return bool
   }
 }
-
+// присваивает true ключам из firstIntent, если найдет их имя в string
+function findinObj (string) {
+  for (var key in firstIntent) {
+    const re = new RegExp(key, 'i');
+    if (re.test(string)) {
+      firstIntent[key] = 1
+    }
+  }
+}
+// возвращает ключи со значением true из obj
+function isTrue (obj) {
+  let filled = []
+  for (var key in obj) {
+    if (obj[key] != 0) {
+      filled.push(obj[key])
+    }
+  }
+  return filled.join()
+}
+// ищет в string что-то похожее на адрес
+function findAdres(string) {
+  //ver.1: /[улица|переулок|проезд|бульвар][А-Яа-я\-]{2,}[\,\s]*[дом]*\s*\d{1,3}[\\\d{1,3}]*[\,\s\-]*[квартира]*\s*\d{1,3}\s*/i
+  const adressReg = /[А-Я][А-Яа-я\-]{4,}\s[проспект]*\s*[дом]*\s*\d{1,3}\s*[корпус|\/]*\s*[\d{1,3}|A-Я]*\s*[квартира]*\s*\d{1,5}/
+  if (adressReg.test(string)) {
+    firstIntent.adress = adressHandler(adressReg.exec(string)[0])
+    firstIntent['адрес'] = 1
+    speechFlow[0] = 'adressIs'
+   } //else {
+  //   console.log('проверка адреса не успешна');
+  // }
+}
 // возвращает из witAIadress только название улицы, номера дома и квартиры
 function adressHandler(witAIadress) {
   let first = witAIadress.split(' ')
@@ -236,31 +326,22 @@ function adressHandler(witAIadress) {
   })
   return first
 }
-
 // оставляет всё с 5 знака в service и направляет начало диалога
 function Nwork (service) {
   witAI.Nwork = service.split('').slice(5).join('')
     if (witAI.adress != '') {
-      audioPlay('check')
+      addTip('check')
     } else if (witAI.adress === '') {
-      audioPlay('adress')
+      addTip('adress')
     }
 }
-
-// обрабатывает разговор по линии проблем с ТВ
-function determinationOfDialogConcept() {
-  if (witAI.Nwork === 'INT') {
-    dialogConceptINT()
-  } else if (witAI.Nwork === 'TV') {
-    dialogConceptTV()
-  }
-}
-
 // добавляет кнопку-подсказку что говорить
 function addTip(tip) {
+  speech()
   let tipDiv = document.getElementById('tip')
   const button = document.getElementById(tip)
   const input = document.createElement('input')
+  const br = document.createElement('br')
     input.type = 'button'
     input.onclick =  function() {
         audioPlay(tip)
@@ -268,25 +349,24 @@ function addTip(tip) {
     input.title = button.title
     input.value = button.innerText
   if (tipDiv.innerText === null) {
+    tipDiv.appendChild(br)
     tipDiv.appendChild(input)
   } else {
     tipDiv.innerText = null
+    tipDiv.appendChild(br)
     tipDiv.appendChild(input)
   }
 }
-
 // готовит адрес(оставляет первых 4 символа) для передачи роботу для печати
 function prepStreetForRoboAdress(street) {
   let newArr = []
   const arrrrr = street.split('', 4).join('')
   return arrrrr
 }
-
 // возващает условие в if для dialog. first - true/false, а second - undefined
 function dialogCondition(first, second) {
   return speechFlow[first] === true && speechFlow[second] === undefined || first === false && second === undefined
 }
-
 // обновить данные по сессии
 function sescionUpdate() {
   if (data.test === true) {

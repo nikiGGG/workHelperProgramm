@@ -1,4 +1,3 @@
-// Get pixel color under the mouse. node robot.js
 var robot = require("robotjs");
 
 exports.coordinates = function () {
@@ -25,12 +24,12 @@ exports.type = function (string) {
 
 exports.pxlColor = function (x, y) {
   let img = robot.screen.capture(x, y, 1, 1);
-  return '#' + img.colorAt(0, 0)// + ' В точке' + x + ':' + y
+  return '#' + img.colorAt(0, 0)// + ' В точке ' + x + '/' + y
 }
 
-exports.prtSc = function (x, y) {
-  let img = robot.screen.capture(x, y, 10, 10);
-  return 'Сделал prtSc' + x + ':' +y
+exports.prtSc = async function (x, y, w, h) {
+  const img = await robot.screen.capture(x, y, w, h);
+  return img//'Сделал prtSc' + x + ':' + y
 }
 
 exports.hide = function () {
@@ -82,30 +81,19 @@ exports.sescion = function () {
   }
 }
 
-exports.adress = function (str, app, num) {
-  robot.moveMouse(1490, 155);
-  robot.mouseClick();
-  robot.typeStringDelayed(str, 300);
-  robot.setKeyboardDelay(1000)
-  robot.keyTap('tab')
-  robot.typeStringDelayed(app, 300);
-  robot.keyTap('tab')
-  robot.keyTap('tab')
-  robot.setKeyboardDelay(1000)
-  robot.typeStringDelayed(num, 300);
-  robot.moveMouse(110+1366, 410);
-  robot.mouseClick();
-  return 'adress done'
+exports.key = function (key) {
+  robot.keyTap(key)
+  return 'Нажал на кнопку'
 }
-robot.moveMouse(1000, 200)
+
 /*
 // команды
 robot.moveMouse(x, y)
 robot.moveMouseSmooth(x, y)
-robot.scrollMouse(x, y);
+robot.scrollMouse(x, y)
 robot.mouseClick()
 robot.setMouseDelay(ms)
-robot.getMousePos();
+robot.getMousePos()
 robot.typeString(строка)
 robot.typeStringDelayed('строка', букв в минуту)
 robot.keyTap(key, [modifier])

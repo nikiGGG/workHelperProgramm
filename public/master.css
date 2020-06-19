@@ -34,3 +34,13 @@ body {
 .dialog{
   max-width: 100%
 }
+
+h3 {
+  cursor: pointer
+}
+
+.test {
+  background:#e8d8c0;
+  width: 20px;
+  height: 20px;
+}
