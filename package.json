@@ -25,7 +25,7 @@
     "cors": "^2.8.5",
     "express": "^4.17.1",
     "google-proto-files": "^2.0.0",
-    "grpc": "^1.24.2",
+    "grpc": "^1.24.9",
     "tesseract.js": "^2.1.1"
   }
 }
